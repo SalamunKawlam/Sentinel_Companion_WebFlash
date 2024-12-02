@@ -5,16 +5,7 @@
       {
         "chipFamily": "ESP32",
         "parts": [
-          { "path": "boot_app0.bin", "offset": 57344 },
-          { "path": "rfid_v1.40_app.bin", "offset": 65536 },
-          { "path": "rfid_v1.40_.bootloader.bin", "offset": 4096 },
-          { "path": "rfid_v1.40_.partitions.bin", "offset": 32768 }
-        ]
-      },
-      {
-        "chipFamily": "ESP8266",
-        "parts": [
-          { "path": "esp8266/SerialHelloWorld.ino.bin", "offset": 0 }
+          { "path": "app.bin", "offset": 0 },
         ]
       }
     ]
