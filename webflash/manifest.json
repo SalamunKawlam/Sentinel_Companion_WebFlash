@@ -7,6 +7,12 @@
         "parts": [
           { "path": "app.bin", "offset": 0 }
         ]
+      },
+      {
+        "chipFamily": "ESP8266",
+        "parts": [
+          { "path": "esp8266/SerialHelloWorld.ino.bin", "offset": 0 }
+        ]
       }
     ]
   }
