@@ -1,36 +1,88 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinel Companion Webflasher</title>
+
+    <script
+        type="module"
+        src="https://unpkg.com/esp-web-tools@7.3.1/dist/web/install-button.js?module">
+    </script>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #F4F5F4;
+            color: #131413;
+            gap: 32px;
+        }
+
+#main, #notSupported {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center; /* Vertically align the contents */
+    justify-content: center; /* Vertically align the contents */
+}
+    </style>
+</head>
 
 <body>
-    <h1>Sentinel Companion Webflasher</h1>
-
     <div id="main" style="display: none;">
-
-        <br>
-        <script
-            type="module"
-            src="https://unpkg.com/esp-web-tools@7.3.1/dist/web/install-button.js?module">
-        </script>
-        <esp-web-install-button id="installButton" manifest="webflash/manifest.json"></esp-web-install-button>
-        <br>
-        <span>NOTE: Make sure to close anything using your devices com port (e.g. Serial monitor)</span>
+        <h1 style="margin: 0;">Sentinel Companion Webflasher</h1>
+        <span>Make sure to close anything using your devices com port (e.g. Serial monitor)</span>
     </div>
+    <esp-web-install-button id="installButton" manifest="webflash/manifest.json"></esp-web-install-button>
+
+
     <div id="notSupported" style="display: none;">
         Your browser does not support the Web Serial API. Try Chrome
     </div>
-    
 
     <script>
         if(navigator.serial){
             document.getElementById("notSupported").style.display = 'none';
-            document.getElementById("main").style.display = 'block';
+            document.getElementById("main").style.display = 'flex';
         } else {
-            document.getElementById("notSupported").style.display = 'block';
+            document.getElementById("notSupported").style.display = 'flex';
             document.getElementById("main").style.display = 'none';
         }
     </script>
 
-</body>
+<script>
+    window.onload = () => {
+        const installButton = document.querySelector('#installButton');
 
+        // Wait for the Web Component to fully load and apply custom styles
+        installButton.shadowRoot.querySelector('button').style.backgroundColor = '#2EB263';
+        installButton.shadowRoot.querySelector('button').style.boxShadow = "none";
+        installButton.shadowRoot.querySelector('button').textContent = 'Connect';
+        installButton.shadowRoot.querySelector('button').style.border = 'none';
+        installButton.shadowRoot.querySelector('button').style.borderRadius = '100px';
+        installButton.shadowRoot.querySelector('button').style.color = 'white';
+        installButton.shadowRoot.querySelector('button').style.padding = '24px 48px';
+        installButton.shadowRoot.querySelector('button').style.cursor = 'pointer';
+        installButton.shadowRoot.querySelector('button').style.fontSize = '1.5rem';
+        
+        // Apply hover styles for the button inside the shadow DOM
+        installButton.shadowRoot.querySelector('button').addEventListener('mouseover', () => {
+            installButton.shadowRoot.querySelector('button').style.backgroundColor = '#196136';
+        });
+        installButton.shadowRoot.querySelector('button').addEventListener('mouseout', () => {
+            installButton.shadowRoot.querySelector('button').style.backgroundColor = '#2EB263';
+        });
+    };
+</script>
+
+</body>
 </html>

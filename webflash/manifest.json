@@ -1,5 +1,5 @@
 {
-    "name": "ESP Web Tool Demo",
+    "name": "Sentinel RFID Scanner v1.40",
     "new_install_prompt_erase": true,
     "builds": [
       {
